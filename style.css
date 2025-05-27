@@ -181,3 +181,122 @@ body.loaded #loader {
 body {
   margin-top: 90px;
 }
+
+.home-content {
+  margin-left: 100px;
+  margin-top: 120px;
+  max-width: 600px;
+  text-align: left;
+  position: relative;   /* Tambahkan ini */
+  z-index: 10;          /* Tambahkan ini */
+}
+
+.greeting {
+  font-family: 'Moontime', cursive;
+  color: #22969b;
+  font-size: 62px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+    text-shadow:
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf;
+  display: inline-block;
+  position: relative;
+  left: -80px;
+  opacity: 0;
+  overflow: visible;
+  white-space: nowrap;
+  border-right: none;
+  width: auto;
+  animation: slide-right 3s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+
+@keyframes slide-right {
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.intro {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+}
+
+.intro .highlight {
+  color: #fff;
+  font-weight: bold;
+}
+
+.role {
+  font-family: 'Open Sans', sans-serif;
+  color: #22969b;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 0.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.quote {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 20px;
+  font-size: 26.5px; /* Ubah ukuran font sesuai permintaan */
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+.quote::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 0;
+  background: #22969b;
+  transition: height 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+  z-index: 1;
+  border-radius: 2px;
+  animation: borderDown 0.7s forwards;
+  animation-delay: 4.7s;
+}
+
+@keyframes borderDown {
+  from { height: 0; }
+  to   { height: 100%; }
+}
+
+.important {
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.fade-in-1 {
+  opacity: 0;
+  animation: fadeInText 1.2s ease forwards;
+  animation-delay: 3s;
+}
+
+.fade-in-2 {
+  opacity: 0;
+  animation: fadeInText 1.2s ease forwards;
+  animation-delay: 4s;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateX(-60px); /* dari kanan */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
