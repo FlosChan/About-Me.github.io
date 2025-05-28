@@ -12,10 +12,10 @@
       <span class="logo-text">STORY</span>
     </div>
     <nav class="main-nav">
-      <a href="#">HOME</a>
-      <a href="#">ABOUT ME</a>
-      <a href="#">SKILLS</a>
-      <a href="#">OTHER</a>
+      <a href="#home-greeting">HOME</a>
+      <a href="#about">ABOUT ME</a>
+      <a href="#pengembangan">SKILLS</a>
+      <a href="#pengembangan">OTHER</a>
     </nav>
   </header>
 
@@ -31,7 +31,7 @@
 
   <!-- Tambahkan setelah </header> -->
 <main class="home-content">
-  <h2 class="greeting">HOLA EVERYONE 👋</h2>
+  <h2 class="greeting" id="home-greeting">HOLA EVERYONE 👋</h2>
   <h1 class="intro fade-in-1">I'm <span class="highlight">Chanza</span></h1>
   <h3 class="role fade-in-2">BEGINNER GAME DEVELOPER</h3>
   <blockquote class="quote">
@@ -40,6 +40,68 @@
   </blockquote>
 </main>
 
-  
+<!-- Ganti href dengan link akunmu -->
+<div class="social-icons">
+  <a href="https://www.instagram.com/flos.chan?igsh=bXh3NjhpdjBwNHM=" target="_blank" rel="noopener">
+    <img src="Bahan/instagram.png" alt="Instagram" />
+  </a>
+  <a href="https://github.com/FlosChan" target="_blank" rel="noopener">
+    <img src="Bahan/github.png" alt="Facebook" />
+  </a>
+  <a href="https://www.tiktok.com/@flos_chan?_t=ZS-8wi0hS7WN09&_r=1" target="_blank" rel="noopener">
+    <img src="Bahan/tiktok.png" alt="TikTok" />
+  </a>
+  <a href="https://wa.me/qr/MWPEEJ2AVIUPC1" target="_blank" rel="noopener">
+    <img src="Bahan/whatsapp.png" alt="WhatsApp" />
+  </a>
+</div>
+
+<div class="photo-frame-bg"></div>
+<div class="photo-frame"></div>
+  <img src="Bahan/me.png" alt="Foto Chanza" class="photo-outside">
+
+<div class="hex-x-row">
+  <span class="hex-x">✕</span>
+  <span class="hex-x">✕</span>
+  <span class="hex-x">✕</span>
+</div>
+
+<!-- Tambahkan section baru agar halaman bisa di-scroll -->
+<section style="height: 1500px;"></section>
+<section class="about-section" id="about">
+  <div class="about-title">
+    ABOUT ME
+    <span class="about-emoji">👉😊👈</span>
+  </div>
+  <div class="about-details">
+    Nama: Chanza Chenzia Wan<br>
+    Tgl lahir: 21-02-2007<br>
+    Asal Tempat: Purbalingga<br>
+    Alamat: Penaruban, 03/09, Kaligondang, Purbalingga.<br>
+    Hobi: Teknologi, Game, Musik, Film, dan lain-lain.<br>
+    Tujuan: Ingin sesuatu yang lebih gila dari sebelumnya.<br>
+    Histori Pendidikan:
+    <br>
+    <img src="Bahan/sekolah.png" alt="Sekolah" class="sekolah-img">
+    <img src="Bahan/karya_expost.png" alt="Expost" class="karya-img">
+  </div>
+</section>
+
+<section class="pengembangan-section" id="pengembangan">
+  <span class="pengembangan-text">DALAM TAHAP PENGEMBANGAN</span>
+</section>
+
+<!-- Watermark pojok kiri bawah -->
+<div class="watermark">design by chanza</div>
+
+<script>
+window.addEventListener('scroll', function() {
+  var about = document.querySelector('.about-section');
+  var rect = about.getBoundingClientRect();
+  if(rect.top < window.innerHeight - 120) {
+    about.classList.add('visible');
+  }
+});
+</script>
 </body>
 </html>

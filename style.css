@@ -6,6 +6,10 @@
   font-display: swap;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -211,6 +215,7 @@ body {
   border-right: none;
   width: auto;
   animation: slide-right 3s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  scroll-margin-top: 150px; /* atur sesuai tinggi header + jarak yang diinginkan */
 }
 
 @keyframes slide-right {
@@ -299,4 +304,309 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.social-icons {
+  display: flex;
+  gap: 30px;
+  margin-top: 0;
+  position: absolute;
+  left: 120px;
+  bottom: 2010px;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 20;
+  /* Hapus opacity dan animasi di sini */
+}
+
+/* Animasi satu per satu */
+.social-icons a {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: 
+    spin 2.5s linear infinite,  
+    fadeInIcons 0.8s ease forwards;
+}
+.social-icons a:nth-child(1) { animation-delay: 8.7s; }
+.social-icons a:nth-child(2) { animation-delay: 9s; }
+.social-icons a:nth-child(3) { animation-delay: 9.3s; }
+.social-icons a:nth-child(4) { animation-delay: 9.6s; }
+
+/* Pengaturan ukuran icon */
+.social-icons a img {
+  width: 52px;   /* Ubah sesuai kebutuhan */
+  height: 52px;  /* Ubah sesuai kebutuhan */
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.15) rotate(-6deg);
+  filter: drop-shadow(0 0 8px #ffb6c1);
+}
+
+.photo-frame {
+  width: 340px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  clip-path: polygon(
+    25% 5.77%, 75% 5.77%,
+    100% 50%, 75% 94.23%,
+    25% 94.23%, 0% 50%
+  );
+  background: radial-gradient(circle at 50% 50%, #d191a3 55%, #8e4585 100%);
+  box-shadow: 0 0 40px 0 #8e4585;
+  position: absolute;
+  right: 150px;
+  top: 50px;
+  z-index: 10;
+  overflow: hidden;
+  animation: hexagonFromRight 1.2s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation-delay: 3s;
+  opacity: 0;
+}
+
+/* Tambahkan latar belakang untuk foto dengan efek radial gradient */
+.photo-frame-bg {
+  width: 370px; /* sedikit lebih besar dari .photo-frame */
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  right: 135px; /* sesuaikan agar pas di belakang .photo-frame */
+  top: 35px;    /* sesuaikan agar pas di belakang .photo-frame */
+  z-index: 8;   /* lebih kecil dari .photo-frame */
+  clip-path: polygon(
+    25% 5.77%, 75% 5.77%,
+    100% 50%, 75% 94.23%,
+    25% 94.23%, 0% 50%
+  );
+  background: radial-gradient(circle at 50% 50%, #d191a3 80%);
+  box-shadow: 0 0 60px 0 #8e4585;
+  animation: hexagonFromLeft 1.2s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation-delay: 3s;
+  opacity: 0;
+}
+
+/* Efek aura menyebar */
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -30px; /* Membuat aura lebih besar dari hexagon */
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 30%; /* Membantu efek blur menyebar */
+  background: radial-gradient(circle, #d191a3cc 0%, #8e458580 60%, transparent 100%);
+  filter: blur(10px);
+  opacity: 10;
+}
+
+/* Pastikan isi foto tetap di atas aura */
+.photo-frame img {
+  width: 88%;
+  height: 88%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  position: relative;
+  z-index: 20;
+}
+
+.photo-outside {
+  position: absolute;
+  right: 210px;   /* atur agar pas di depan/luar hexagon */
+  top: 20px;      /* atur agar pas di depan/luar hexagon */
+  width: 265px;   /* sesuaikan ukuran foto */
+  height: 350px;  /* sesuaikan ukuran foto */
+  object-fit: cover;
+  z-index: 20;   /* lebih tinggi dari .photo-frame */
+  border-radius: 18px;
+  opacity: 0;
+  animation: photoOutsideUp 1.1s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+  animation-delay: 4.5s; /* opsional, biar sudutnya lembut */
+}
+
+.hex-x-row {
+  position: absolute;
+  right: 236px; /* sesuaikan agar rata dengan hexagon */
+  top: 410px;   /* sesuaikan agar tepat di bawah hexagon */
+  display: flex;
+  gap: 40px;
+  z-index: 12;
+}
+
+@keyframes spin-x {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+.hex-x {
+  display: inline-block;
+  font-size: 38px;
+  color: #8e4585;
+  font-weight: bold;
+  text-shadow:
+    0 2px 8px #d191a3,
+    0 0 2px #fff;
+  user-select: none;
+  -webkit-text-stroke: 0.05px #d191a3;
+  animation: spin-x 2.5s linear infinite;
+  line-height: 1;
+  vertical-align: middle;
+  opacity: 1; /* Pastikan selalu tampil */
+}
+
+.hex-x-row .hex-x:nth-child(1) { animation-delay: 0s; }
+.hex-x-row .hex-x:nth-child(2) { animation-delay: 0s; }
+.hex-x-row .hex-x:nth-child(3) { animation-delay: 0s; }
+
+@keyframes fadeInIcons {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hexagonFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(120px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes hexagonFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-120px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes photoOutsideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.about-section {
+  max-width: 700px;
+  position: absolute;
+  left: 30px;
+  top: -1300px;
+  padding: 40px 40px 40px 60px;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.2s cubic-bezier(.68,-0.55,.27,1.55), transform 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+  text-align: left;
+  scroll-margin-top: 30px; /* atur sesuai tinggi header + jarak yang diinginkan */
+}
+
+.about-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-title {
+  font-family: 'Moontime', cursive;
+  color: #22969b;
+  font-size: 62px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+    text-shadow:
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf,
+    1px 3px 0 #7cbbbf;
+  display: inline-block;
+  position: relative;
+  gap: 12px;
+}
+
+.about-emoji {
+  font-size: 2.2rem;
+  margin: 0 6px;
+}
+
+.about-details {
+  font-family: 'Typewriter', monospace;
+  font-size: 1.25rem;
+  color: #222;
+  margin-top: 18px;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+}
+
+/* Gambar sekolah di About */
+.sekolah-img {
+  width: 600px;           /* Atur lebar gambar */
+  height: 270px;           /* Tinggi otomatis agar proporsional */
+  position: absolute;     /* Posisi absolut agar bisa diatur bebas */
+  right: 150px;            /* Jarak dari kanan */
+  top: 330px;              /* Jarak dari atas */
+  z-index: 15;            /* Di atas background, di bawah elemen utama */
+  border-radius: 16px;    /* Sudut membulat opsional */
+  padding: 6px;
+}
+
+.karya-img {
+  width: 500px;           /* Atur lebar gambar */
+  height: 550px;           /* Tinggi otomatis agar proporsional */
+  position: absolute;     /* Posisi absolut agar bisa diatur bebas */
+  left: 750px;            /* Jarak dari kanan */
+  top: 30px;             /* Jarak dari atas */
+  z-index: 15;            /* Di atas background, di bawah elemen utama */
+  border-radius: 16px;    /* Sudut membulat opsional */
+  padding: 6px;
+}
+
+.pengembangan-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  position: relative;
+  bottom: 1000px;
+  scroll-margin-top: 280px;
+}
+
+.pengembangan-text {
+  font-family: 'Retropix', monospace, Arial, sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #e53935;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.watermark {
+  position: fixed;
+  left: 1205px;
+  bottom: 12px;
+  font-size: 0.95rem;
+  color: #bdbdbd;
+  opacity: 1;
+  font-family: 'Typewriter', monospace, Arial, sans-serif;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
 }
